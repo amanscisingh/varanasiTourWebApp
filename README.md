@@ -1,0 +1,9 @@
+# varanasiTourWebApp
+I hanen't disturbed it much....
+I just added just some extra code for the fixed bottom section which includes the 5 selections with Icons...
+
+Extra Codes | @Aditya Lodhi
+in map.html -> line 34-44
+in css/map.css -> line 10-46
+
+Rest is same...
