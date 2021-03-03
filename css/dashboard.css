@@ -1,0 +1,90 @@
+html {
+    box-sizing: border-box;
+    font-size: 100%;
+
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    position: absolute;
+    background-image: url('imagesforcss/varanasiMobile.jpg');
+    background-size: cover;
+}
+
+.container{
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    height: fit-content;
+    
+}
+
+.control2{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 0;
+    margin: 1px 1px 1px 1px;
+
+}
+
+.control-element2{
+    width: auto;
+    height: 95px;
+    font-size: 1.2rem;
+    background-color: rgb(255 255 255 / 91%);
+    margin: .5px .5px .5px .5px;
+    color: rgb(35 26 52);
+    align-content: center;
+    text-align: center;
+
+}
+
+.control-element2 b{
+    padding: 4px;
+}
+
+
+.control1{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    padding: 0;
+    margin: 0;
+    bottom: 0;
+    width: 100%;
+    justify-items: center;
+    background-color: rgb(21 7 4);
+}
+
+
+.control-element1{
+    border-radius: 10px;
+    height: 70px;
+    width: 70px;
+
+}
+
+.control-element1 a{
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+}
+
+
+
+.control-element1 img{
+    margin: 0 0 0 0;
+    padding: 0;
+}
+
+.control-element1 img:hover{
+    transform: translateY(5px);
+}
+
+
+@media only screen and (min-width: 768px) {
+    body{
+        background-image: url('imagesforcss/varanasiFull.jpg');
+    }
+  }
