@@ -1,0 +1,121 @@
+html {
+    box-sizing: border-box;
+    font-size: 100%;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    position: absolute;
+    background-image: url('imagesforcss/varanasiMobile.jpg');
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+}
+
+.element p{
+    text-align: center;
+}
+
+a{
+    text-decoration: none;
+}
+
+h2{
+    text-align: center;
+    color: rgb(0, 0, 0);
+    background-color: #a7d0ff;
+    align-content: center;
+    align-items: center;
+    align-self: center;
+    justify-content: center;
+    justify-self: center;
+    justify-items: center;
+    margin: 0;
+}
+
+p{
+    color: whitesmoke;
+    font-weight: bold;
+}
+
+.big-container{
+    height: auto;
+    width: 100%;
+}
+.container{
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    height: fit-content;
+    
+}
+
+.scroller{
+    display: flex;
+    flex-direction: row;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    width: 100%;
+    height: 100%;
+}
+
+.scroller::-webkit-scrollbar {
+    display: none;
+  }
+
+.element{
+    margin: 4px;
+
+}
+
+.element:hover{
+    transform: scale(1.03);
+}
+
+
+.control1{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    padding: 0;
+    margin: 0;
+    bottom: 0;
+    width: 100%;
+    justify-items: center;
+    background-color: rgb(21 7 4);
+}
+
+
+.control-element1{
+    border-radius: 10px;
+    height: 70px;
+    width: 70px;
+
+}
+
+.control-element1 a{
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+}
+
+
+
+.control-element1 img{
+    margin: 0 0 0 0;
+    padding: 0;
+}
+
+.control-element1 img:hover{
+    transform: translateY(-5px);
+}
+
+
+@media only screen and (min-width: 768px) {
+    body{
+        background-image: url('imagesforcss/varanasiFull.jpg');
+        height: 100vh;
+        background-size: cover;
+    }
+  }
