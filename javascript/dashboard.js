@@ -14,6 +14,7 @@ const shopping = ["Saree", "Toys"]
 const food = ["Local Cuisine", "Vegiterian", "Non-Vegiterian", "Snakes/Street Food"]
 const health = ["Spa", "Ayurveda", "Yoga", "Hospitals"]
 
+const touristsLink = ["topAttraction.html", "temples.html","topAttraction.html","topAttraction.html","topAttraction.html", "topAttraction.html"]
 const touristsImg = ["Top Attractioin", "Temples", "Ghat", "Recreation", "Heritage", "Other"]
 
 
