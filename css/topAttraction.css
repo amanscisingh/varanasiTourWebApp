@@ -1,0 +1,20 @@
+.top-attraction{
+    overflow-y: scroll;
+    background-color: blanchedalmond;
+}
+
+p{
+    color: black;
+}
+
+.top-attraction::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* For full screen pc */
+@media only screen and (min-width: 768px){
+    .top-attraction::-webkit-scrollbar {
+        display: none;
+    }   
+}
