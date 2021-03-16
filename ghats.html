@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/topAttraction.css">
+</head>
+<body>
+    <div class="big-container">
+        <div class="title"><h2>Varanasi Tourism Services</h2></div>
+
+<!-- Top attraction page starts here... -->
+
+<div class="top-attraction">
+    <div class="favourite-place-card-container" style="cursor: pointer;"  id="btn-1">
+        <div style="margin-right:10px">
+            <h1 class="favourite-place-card-heading">Assi Ghat</h1>
+            <p class="favourite-place-card-description">
+                Assi Ghat's star attraction is a Shiva lingam (phallic representation of the Hindu deity) beneath a sacred fig tree
+            </p>
+        </div>
+        <img src="images/assighat.png" class="favourite-place-card-image" />
+    </div>
+    <div class="favourite-place-card-container" style="cursor: pointer;"  id="btn-2">
+        <div  style="margin-right:10px">
+            <h1 class="favourite-place-card-heading">Manikarnika Ghat</h1>
+            <p class="favourite-place-card-description">
+                Hindus believe that Manikarnika Ghat is one of the most auspicious places for the departed to reach moksha (emancipation from the cycle of spiritual rebirth)
+            </p>
+        </div>
+        <img src="images/manikarnika.png" class="favourite-place-card-image" />
+    </div >
+    <div class="favourite-place-card-container" style="cursor: pointer;" target="_self"  id="btn-3">
+        <div  style="margin-right:10px">
+            <h1 class="favourite-place-card-heading">Kedar Ghat</h1>
+            <p class="favourite-place-card-description">
+                Kedar Ghat is one of the oldest Ghats in Varanasi and is considered cleaner for bathing in the holy River Ganga and offering prayers to Lord Shiva at the Kedareshwar Temple.
+            </p>
+        </div>
+        <img src="images/kedarghat.png" class="favourite-place-card-image" />
+    </div>
+    <div class="favourite-place-card-container" style="cursor: pointer;" target="_self"  id="btn-4">
+        <div  style="margin-right:10px">
+            <h1 class="favourite-place-card-heading">Dasaswamedh Ghat</h1>
+            <p class="favourite-place-card-description">
+                Hindu priests put on the Ganga Aarti every night at the Dasaswamedh Ghat, starting at around 7pm.
+            </p>
+        </div>
+        <img src="images/dasaswamedhghat.png" class="favourite-place-card-image" />
+    </div>
+</div>
+
+<!-- Top Attraction Ends here -->
+
+        <div class="container">
+            <div class="scroller" id="change">
+                <!-- <div class="element">
+                    <a href="#">
+                        <img src="https://picsum.photos/seed/picsum/60/60" alt="1" >
+                        <p>Obj 1</p>
+                    </a>
+                </div>
+                <div class="element">
+                    <a href="#">
+                        <img src="https://picsum.photos/seed/picsum/60/60" alt="1" >
+                        <p>Obj 2</p>
+                    </a>
+                </div> -->
+            </div>
+
+            <div class="control1"> 
+                <div class="control-element1" id="foodBtn"><a href="#"> <img src="images/food2.png" alt="Back To Dashboard"> </a> </div>     
+                <div class="control-element1" id="shoppingBtn"><a href="#"> <img src="images/shopping2.png" alt="Search"> </a> </div>
+                <div class="control-element1" id="touristBtn"><a href="#"> <img src="images/tourists2.png" alt="Go To"> </a> </div>
+                <div class="control-element1" id="cityTourBtn"><a href="#"> <img src="images/cityTour2.png" alt="Draw Path"> </a> </div>
+                <div class="control-element1" id="healthBtn"><a href="#"> <img src="images/health2.png" alt="Profile"> </a> </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="javascript/dashboard.js"></script>
+    <script src="javascript/ghats.js"></script>
+</body>
+</html>
