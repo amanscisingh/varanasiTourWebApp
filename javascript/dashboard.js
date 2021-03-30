@@ -15,6 +15,7 @@ const food = ["Local Cuisine", "Vegiterian", "Non-Vegiterian", "Snakes/Street Fo
 const health = ["Spa", "Ayurveda", "Yoga", "Hospitals"]
 
 const touristsLink = ["topAttraction.html", "temples.html","ghats.html","recreation.html","heritage.html", "other.html"]
+const cityTourLink = ["oneDay.html", "twoDay.html", "threeDay.html"]
 const touristsImg = ["Top Attractioin", "Temples", "Ghat", "Recreation", "Heritage", "Other"]
 
 
@@ -41,7 +42,7 @@ cityTourBtn.addEventListener('click', () => {
     for (let i = 0; i < cityTour.length; i++) {
         tempStr = tempStr.concat(`
         <div class="element">
-            <a href="#">
+            <a href=`+ cityTourLink[i] +`>
                 <img src="https://picsum.photos/seed/picsum/60/60" alt="1" >
                 <p> ` + cityTour[i] + ` </p>
             </a>

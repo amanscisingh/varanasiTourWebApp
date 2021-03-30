@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/navigation.css">
+
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.1.0/mapbox-gl.css' rel='stylesheet' />
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.1.0/mapbox-gl.js'></script>
+    
+</head>
+<body>
+    <div class="title"><h2>Varanasi Tourism Services</h2></div>
+    <div class="big-container">
+        
+
+<!-- Top attraction page starts here... -->
+
+<div class="top-attraction">
+    <p id="navigationDetails">Navigation Details will appear here... <br> 
+    </p>
+</div>
+
+<!-- Top Attraction Ends here -->
+
+        <div class="container">
+            <div class="scroller" id="map-container">
+                <div id='map' style='height:100vh;'></div>
+                <script>
+                    mapboxgl.accessToken = 'pk.eyJ1IjoiYWRpdHlhMjAyMyIsImEiOiJja2tteDRzMmIxdmphMnZwZ28zNTBzYmgyIn0.1P-bsCr_lbQcBBFA4i8IMQ';
+                    var map = new mapboxgl.Map({
+                        container: 'map',
+                        style: 'mapbox://styles/aditya2023/ckkqx2u5f2j1n18mrimqk85ri',
+                    });
+                </script>
+            </div>
+
+
+            <div class="scroller" id="change">
+                
+            
+
+            </div>
+
+            <div class="control1"> 
+                <div class="control-element1" id="foodBtn"><a href="#"> <img src="images/food2.png" alt="Back To Dashboard"> </a> </div>     
+                <div class="control-element1" id="shoppingBtn"><a href="#"> <img src="images/shopping2.png" alt="Search"> </a> </div>
+                <div class="control-element1" id="touristBtn"><a href="#"> <img src="images/tourists2.png" alt="Go To"> </a> </div>
+                <div class="control-element1" id="cityTourBtn"><a href="#"> <img src="images/cityTour2.png" alt="Draw Path"> </a> </div>
+                <div class="control-element1" id="healthBtn"><a href="#"> <img src="images/health2.png" alt="Profile"> </a> </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="javascript/dashboard.js"></script>
+    <script src="javascript/navigation.js"></script>
+</body>
+</html>

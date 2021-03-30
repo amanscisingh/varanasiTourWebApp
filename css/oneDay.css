@@ -1,0 +1,207 @@
+@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&family=Caveat:wght@400;700&family=Lobster&family=Monoton&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display+SC:ital,wght@0,400;0,700;1,700&family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=Roboto:ital,wght@0,400;0,700;1,400;1,700&family=Source+Sans+Pro:ital,wght@0,400;0,700;1,700&family=Work+Sans:ital,wght@0,400;0,700;1,700&display=swap');
+
+body{
+    background-image: none;
+}
+
+.top-attraction{
+    overflow-y: scroll;
+    background-color: blanchedalmond;
+    position: fixed;
+    /* height: 50vh;
+    bottom: 39px; */
+    width: 100%;
+    height: 70vh;
+}
+
+.top-attraction2{
+    position: fixed;
+    height: 18vh;
+    bottom: 75px;
+    width: 100%;
+}
+
+p{
+    color: black;
+    margin: 1px;
+
+}
+
+.top-attraction::-webkit-scrollbar {
+    display: none;
+}
+
+.navhead {
+    font-size: 17px;
+    font-family: Roboto;
+    font-style: italic;
+    font-weight: 600;
+}
+
+.bg-container {
+    background-image: url("https://d1tgh8fmlzexmh.cloudfront.net/ccbp-static-website/ocean.jpg");
+    height: 100vh;
+    background-size: cover;
+}
+
+.tourism-card {
+    text-align: center;
+    background-color: white;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    padding: 5px;
+}
+
+.button {
+    color: white;
+    background-color: #25b1cc;
+    width: 138px;
+    height: 36px;
+    border-width: 0px;
+    border-radius: 20px;
+}
+
+.main-heading {
+    font-family: "Roboto";
+}
+
+.paragraph {
+    font-family: "Roboto";
+}
+
+.favourite-places-bg-container {
+    background-color: #25b1cc;
+    background-size: cover;
+    padding: 24px;
+}
+
+.favourite-places-heading {
+    color: white;
+    font-family: "Roboto";
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.favourite-place-card-container {
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 15px;
+}
+
+.favourite-place-card-heading {
+    color: #0f0e46;
+    font-family: "Roboto";
+    font-size: 23px;
+    font-weight: bold;
+}
+
+.favourite-place-card-description {
+    color: #6c6b70;
+    font-family: "Roboto";
+    font-size: 13px;
+}
+
+.favourite-place-card-image {
+    width: 80px;
+    height: 100px;
+}
+
+.favourite-place-card-text-container {
+    margin-right: 15px;
+}
+
+.detailed-view-bg-container {
+    background-image: url("https://d1tgh8fmlzexmh.cloudfront.net/ccbp-static-website/seabg.png");
+    height: 100vh;
+    background-size: cover;
+}
+
+.detailed-view-heading {
+    color: white;
+    font-family: "Roboto";
+    font-size: 28px;
+    font-weight: bold;
+    padding: 24px;
+}
+
+.detailed-view-card-container {
+    background-color: white;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    margin: 24px;
+}
+
+.detailed-view-card-heading {
+    color: #0f0e46;
+    font-family: "Roboto";
+    font-size: 23px;
+    font-weight: bold;
+}
+
+.detailed-view-card-description {
+    color: #6c6b70;
+    font-family: "Roboto";
+    font-size: 13px;
+} 
+
+.detailed-view-card-text-container {
+    padding: 16px;
+}
+
+#close{
+    position: absolute;
+    height: 18px;
+    width: 18px;
+    top: 0;
+    right: 0;
+    padding: 1px;
+}
+
+
+/* for map container */
+#map {
+    width: 100%;
+    height: 70vh;
+}
+
+#map-container{
+    display: flex;
+    flex-direction: column;
+    top: 0;
+    height: 65vh;
+    width: 90%;
+    position: fixed;
+    top: 35px;
+    left: 20px;
+    box-shadow: 3px -1px 11px royalblue;
+}
+
+.marker {
+    background-image: url('https://res-console.cloudinary.com/dajhwrmig/thumbnails/v1/image/upload/v1612794200/Njc4MTExLW1hcC1tYXJrZXItNTEyXzFfZG5ndWRj/preview');
+    background-size: cover;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.mapboxgl-popup {
+    max-width: 200px;
+}
+
+.mapboxgl-popup-content {
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+}
+
+
+
+/* For full screen pc */
+@media only screen and (min-width: 768px){
+    .top-attraction::-webkit-scrollbar {
+        display: none;
+    }   
+}
