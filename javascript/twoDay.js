@@ -2,8 +2,9 @@ const showDescription1 = document.getElementById("btn-1")
 const showDescription2 = document.getElementById("btn-2")
 const showDescription3 = document.getElementById("btn-3")
 const showDescription4 = document.getElementById("btn-4")
-const navDetail = document.getElementById("navDetail")
-console.log(navDetail);
+const showDescription5 = document.getElementById("btn-5")
+// const showDescription5 = document.getElementById("btn-5")
+// const showDescription6 = document.getElementById("btn-6")
 const edit = document.getElementById("edit")
 const topAttraction = document.getElementsByClassName("top-attraction")[0]
 console.log(topAttraction);
@@ -11,8 +12,9 @@ console.log(topAttraction);
 const nameToCoordinate = {
 	"Assi" : 0,
 	"Manikarnika" : 1,
-	"Kedar" : 2,
-	"Dasaswamedh" : 3
+	"Kashi" : 2,
+	"Newkashi" : 3,
+    "Ramnagar":4
 }
 
 function startRouting(longitude, latitude) {
@@ -25,8 +27,8 @@ function startRouting(longitude, latitude) {
 
 
 fetch("data.json").then((res)=> { res.json().then((ress)=> {
-    const latitudes = ress['coordinate_1']['latitudes']
-    const longitudes = ress['coordinate_1']['longitudes']
+    const latitudes = ress['coordinate_2']['latitudes']
+    const longitudes = ress['coordinate_2']['longitudes']
     var fullDescription = ress['ghats'];
     showDescription1.addEventListener('click', ()=> {
         console.log("Description Clicked");
@@ -52,7 +54,7 @@ fetch("data.json").then((res)=> { res.json().then((ress)=> {
     
     showDescription3.addEventListener('click', ()=> {
         console.log("Description Clicked");
-        aman.innerHTML =` <p style="padding:7px">` + fullDescription['kedar'] + `</p>` + `<button id='close'> X </button>`;
+        aman.innerHTML =` <p style="padding:7px">` + fullDescription['kashiVishwanath'] + `</p>` + `<button id='close'> X </button>`;
         const close = document.getElementById('close');
         close.addEventListener('click', () => {
             aman.innerHTML = "";
@@ -63,7 +65,7 @@ fetch("data.json").then((res)=> { res.json().then((ress)=> {
     
     showDescription4.addEventListener('click', ()=> {
         console.log("Description Clicked");
-        aman.innerHTML =` <p style="padding:7px">` + fullDescription['dasaswamedh'] + `</p>` + `<button id='close'> X </button>`;
+        aman.innerHTML =` <p style="padding:7px">` + fullDescription['newKashiVishwanath'] + `</p>` + `<button id='close'> X </button>`;
         const close = document.getElementById('close');
         close.addEventListener('click', () => {
             aman.innerHTML = "";
@@ -71,27 +73,36 @@ fetch("data.json").then((res)=> { res.json().then((ress)=> {
         setTimeout(()=> { aman.innerHTML = ""; }, 10000)
     })
 
+    showDescription5.addEventListener('click', ()=> {
+        console.log("Description Clicked");
+        aman.innerHTML =` <p style="padding:7px">` + fullDescription['ramnagar'] + `</p>` + `<button id='close'> X </button>`;
+        const close = document.getElementById('close');
+        close.addEventListener('click', () => {
+            aman.innerHTML = "";
+        });
+        setTimeout(()=> { aman.innerHTML = ""; }, 10000)
+    })
 //recalculating the algorithm
 
     edit.addEventListener('click', ()=> {
         document.body.append(mapContainer);
-        const checkboxes = document.querySelectorAll('input[name="oneDay"]:checked');
+        const checkboxes = document.querySelectorAll('input[name="twoDay"]:checked');
         selected = [];
-        str = "We will be moving to: ";
+        str = "You Have Selected: ";
         console.log("Edit Clicked");
         checkboxes.forEach((checkbox) => {
             selected.push(checkbox.value);
-            str = str + ' -> ' + checkbox.value;
+            str = str + ' ' + checkbox.value;
         });
-        navDetail.innerHTML = str;
-        setTimeout(()=> { navDetail.innerHTML = "Now moving from Your Location to" + selected[0] },3000);
         topAttraction.remove();
         latitudes_new = []
         longitudes_new = []
         for (let j = 0; j < selected.length; j++) {
             longitudes_new.push(longitudes[nameToCoordinate[selected[j]]])
             latitudes_new.push(latitudes[nameToCoordinate[selected[j]]])
-        };
+        }
+
+        //console.log(str);
         optimal1(longitudes_new, latitudes_new);
         console.log(selected);
     });
@@ -168,14 +179,12 @@ function optimal1(longitude, latitude) {
             newDropoff(new mapboxgl.LngLat(longitude[i], latitude[i]));
         }
 
-        map.addControl(
-            new MapboxDirections({
-                accessToken: mapboxgl.accessToken
-            }),
-            'top-left'
-        );
-
-        
+        map.on('click', function(e) {
+            // When the map is clicked, add a new drop-off point
+            // and update the `dropoffs-symbol` layer
+            newDropoff(map.unproject(e.point));
+            updateDropoffs(dropoffs);
+        });
 
         map.addSource('route', {
             type: 'geojson',

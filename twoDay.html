@@ -22,7 +22,7 @@
 <div class="top-attraction">
     <div class="favourite-place-card-container" style="cursor: pointer;">
         <div style="margin-right:10px">
-            <h1 class="favourite-place-card-heading">Assi Ghat <input class="checkbox" type="checkbox" id="Assi" name="oneDay" value="Assi" checked> </h1>
+            <h1 class="favourite-place-card-heading">Assi Ghat <input class="checkbox" type="checkbox" id="Assi" name="twoDay" value="Assi" checked> </h1>
             <p class="favourite-place-card-description"   id="btn-1">
                 Assi Ghat's star attraction is a Shiva lingam (phallic representation of the Hindu deity) beneath a sacred fig tree
             </p>
@@ -31,40 +31,50 @@
     </div>
     <div class="favourite-place-card-container" style="cursor: pointer;">
         <div  style="margin-right:10px">
-            <h1 class="favourite-place-card-heading">Manikarnika Ghat <input class="checkbox" type="checkbox" id="Manikarnika" name="oneDay" value="Manikarnika" checked> </h1>
+            <h1 class="favourite-place-card-heading">Manikarnika Ghat <input class="checkbox" type="checkbox" id="Manikarnika" name="twoDay" value="Manikarnika" checked> </h1>
             <p class="favourite-place-card-description"   id="btn-2">
                 Hindus believe that Manikarnika Ghat is one of the most auspicious places for the departed to reach moksha (emancipation from the cycle of spiritual rebirth)
             </p>
         </div>
         <img src="images/manikarnika.png" class="favourite-place-card-image" />
     </div >
-    <div class="favourite-place-card-container" style="cursor: pointer;" target="_self" >
-        <div  style="margin-right:10px">
-            <h1 class="favourite-place-card-heading">Kedar Ghat <input class="checkbox" type="checkbox" id="Kedar" name="oneDay" value="Kedar" checked></h1>
-            <p class="favourite-place-card-description" id="btn-3">
-                Kedar Ghat is one of the oldest Ghats in Varanasi and is considered cleaner for bathing in the holy River Ganga and offering prayers to Lord Shiva at the Kedareshwar Temple.
+    <div class="favourite-place-card-container" style="cursor: pointer;" id="btn-3">
+        <div style="margin-right:10px">
+            <h1 class="favourite-place-card-heading">Shri Kashi Vishwanath Temple  <input class="checkbox" type="checkbox" id="Kashi" name="twoDay" value="Kashi" checked></h1>
+            <p class="favourite-place-card-description">
+                The impressive structure, dedicated to the Hindu deity Shiva, has earned the nickname "The Golden Temple" for its striking spire — plated in some 800 kilograms of pure gold
             </p>
         </div>
-        <img src="images/kedarghat.png" class="favourite-place-card-image" />
+        <img src="images/bgimage.jpg" class="favourite-place-card-image" />
     </div>
-    <div class="favourite-place-card-container" style="cursor: pointer;" target="_self">
-        <div  style="margin-right:10px">
-            <h1 class="favourite-place-card-heading">Dasaswamedh Ghat <input class="checkbox" type="checkbox" id="Dasaswamedh" name="oneDay" value="Dasaswamedh" checked> </h1>
-            <p class="favourite-place-card-description"  id="btn-4">
-                Hindu priests put on the Ganga Aarti every night at the Dasaswamedh Ghat, starting at around 7pm.
+    <div class="favourite-place-card-container" style="cursor: pointer;" target="_self" id="btn-4">
+        <div style="margin-right:10px">
+            <h1 class="favourite-place-card-heading">New kashi Vishwanath Temple  <input class="checkbox" type="checkbox" id="Newkashi" name="twoDay" value="Newkashi" checked></h1>
+            <p class="favourite-place-card-description">
+                The New Vishwanath Temple is every pious man's go-to destination to feel overwhelmed by the presence and power of the great Lord Shiva.
             </p>
         </div>
-        <img src="images/dasaswamedhghat.png" class="favourite-place-card-image" />
+        <img src="images/bgimage.jpg" class="favourite-place-card-image" />
     </div>
+    <div class="favourite-place-card-container" style="cursor: pointer;" target="_self" id="btn-5">
+        <div style="margin-right:10px">
+            <h1 class="favourite-place-card-heading">RamNagar Fort <input class="checkbox" type="checkbox" id="Ramnagar" name="twoDay" value="Ramnagar" checked></h1>
+            <p class="favourite-place-card-description">
+                There are few destinations in India without a fort, and Varanasi is no exception. About 14 kilometers from the city center, we'll find Ramnagar Fort.
+            </p>
+        </div>
+        <img src="images/bgimage.jpg" class="favourite-place-card-image" />
+    </div>
+
 </div>
 
 <!-- Top Attraction Ends here -->
 
-        <div class="top-attraction2">
-            <hr style="border-width: unset;">
-            <button id="edit">Edit and Recalculate</button>
-            <p id="navDetail">The Navigation details will appear here...</p>
-        </div>
+<div class="top-attraction2">
+    <hr style="border-width: unset;">
+    <button id="edit">Edit and Recalculate</button>
+    <p>The Navigation details will appear here...</p>
+</div>
 
         <div class="container">
             <div class="scroller" id="change">
@@ -94,9 +104,6 @@
 
 
     <script src="javascript/dashboard.js"></script>
-    <script src="javascript/oneDay.js"></script>
-    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.js"></script>
-    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.css" type="text/css">
-
+    <script src="javascript/twoDay.js"></script>
 </body>
 </html>
