@@ -200,13 +200,13 @@ function optimal1(longitude, latitude) {
                 'line-cap': 'round'
             },
             paint: {
-                'line-color': 'black',
+                'line-color': '#3887be',
                 'line-width': [
                     "interpolate",
                     ["linear"],
                     ["zoom"],
                     12, 3,
-                    22, 40
+                    22, 12
                 ]
             }
         }, 'waterway-label');
@@ -217,13 +217,13 @@ function optimal1(longitude, latitude) {
             source: 'route',
             layout: {
                 'symbol-placement': 'line',
-                'text-field': '>>',
+                'text-field': '▶',
                 'text-size': [
                     "interpolate",
                     ["linear"],
                     ["zoom"],
                     12, 24,
-                    22, 160
+                    22, 60
                 ],
                 'symbol-spacing': [
                     "interpolate",
@@ -235,7 +235,7 @@ function optimal1(longitude, latitude) {
                 'text-keep-upright': false
             },
             paint: {
-                'text-color': 'red',
+                'text-color':  '#3887be',
                 'text-halo-color': 'hsl(55, 11%, 96%)',
                 'text-halo-width': 3
             }

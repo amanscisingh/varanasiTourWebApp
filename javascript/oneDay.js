@@ -7,6 +7,7 @@ console.log(navDetail);
 const edit = document.getElementById("edit")
 const topAttraction = document.getElementsByClassName("top-attraction")[0]
 console.log(topAttraction);
+var mapForRouting;
 
 const nameToCoordinate = {
 	"Assi" : 0,
@@ -15,18 +16,69 @@ const nameToCoordinate = {
 	"Dasaswamedh" : 3
 }
 
-function startRouting(longitude, latitude) {
-    console.log("function startRouting is Running");
-    for (let i = 0; i < longitudes.length; i++) {
-        newDropoff(new mapboxgl.LngLat(longitude[i], latitude[i]));
-    }
+function initMap(coordinatesArray) {
+    const directionsService = new google.maps.DirectionsService();
+    const directionsRenderer = new google.maps.DirectionsRenderer();
+    const map = new google.maps.Map(document.getElementById("map"), {
+      zoom: 6,
+      center: { lat: 25.2917, lng: 83.00617 },
+    });
+    directionsRenderer.setMap(map);
+    directionsRenderer.setPanel(document.getElementById('directionsPanel'));
+    calculateAndDisplayRoute(directionsService, directionsRenderer, coordinatesArray);
+  }
 
+function calculateAndDisplayRoute(directionsService, directionsRenderer, coordinatesArray) {
+    // for (let i = 0; i < checkboxArray.length; i++) {
+    //     if (checkboxArray.options[i].selected) {
+    //     waypts.push({
+    //         location: checkboxArray[i].value,
+    //         stopover: true,
+    //     });
+    //     }
+    // }
+    
+    console.log(coordinatesArray[0]['location']);
+    console.log( coordinatesArray[coordinatesArray.length - 1]['location']);
+    directionsService.route(
+        {
+        origin: coordinatesArray[0]['location'],
+        destination: coordinatesArray[coordinatesArray.length - 1]['location'],
+        optimizeWaypoints: true,
+        travelMode: google.maps.TravelMode.DRIVING,
+        },
+        (response, status) => {
+            console.log(status);
+            console.log(response);
+        if (status === "OK" && response) {
+            directionsRenderer.setDirections(response);
+            const route = response.routes[0];
+            // const summaryPanel = document.getElementById("directions-panel");
+            // summaryPanel.innerHTML = "";
+
+            // For each route, display summary information.
+            for (let i = 0; i < route.legs.length; i++) {
+            const routeSegment = i + 1;
+            navDetail.innerHTML +=
+                "<b>Route Segment: " + routeSegment + "</b><br>";
+            navDetail.innerHTML += route.legs[i].start_address + " to ";
+            navDetail.innerHTML += route.legs[i].end_address + "<br>";
+            navDetail.innerHTML += route.legs[i].distance.text + "<br><br>";
+            }
+        } else {
+            window.alert("Directions request failed due to " + status);
+        }
+        }
+);
 }
 
 
+
+
+
 fetch("data.json").then((res)=> { res.json().then((ress)=> {
-    const latitudes = ress['coordinate_1']['latitudes']
-    const longitudes = ress['coordinate_1']['longitudes']
+    const totalCoordinates = ress['coordinate_1']
+    console.log(totalCoordinates);
     var fullDescription = ress['ghats'];
     showDescription1.addEventListener('click', ()=> {
         console.log("Description Clicked");
@@ -71,11 +123,12 @@ fetch("data.json").then((res)=> { res.json().then((ress)=> {
         setTimeout(()=> { aman.innerHTML = ""; }, 10000)
     })
 
-//recalculating the algorithm
+//recalculating the algorithm on clicking the edit & recALCULATE BUTTON
 
     edit.addEventListener('click', ()=> {
         document.body.append(mapContainer);
         const checkboxes = document.querySelectorAll('input[name="oneDay"]:checked');
+        var coordinates = [];
         selected = [];
         str = "We will be moving to: ";
         console.log("Edit Clicked");
@@ -83,17 +136,14 @@ fetch("data.json").then((res)=> { res.json().then((ress)=> {
             selected.push(checkbox.value);
             str = str + ' -> ' + checkbox.value;
         });
+        selected.forEach((each) => {
+            coordinates.push(nameToCoordinate[totalCoordinates[each]])
+        })
         navDetail.innerHTML = str;
         setTimeout(()=> { navDetail.innerHTML = "Now moving from Your Location to" + selected[0] },3000);
         topAttraction.remove();
-        latitudes_new = []
-        longitudes_new = []
-        for (let j = 0; j < selected.length; j++) {
-            longitudes_new.push(longitudes[nameToCoordinate[selected[j]]])
-            latitudes_new.push(latitudes[nameToCoordinate[selected[j]]])
-        };
-        optimal1(longitudes_new, latitudes_new);
-        console.log(selected);
+
+        initMap(totalCoordinates)
     });
 
 }) })
@@ -104,230 +154,4 @@ mapContainer.id = "map-container"
 mapContainer.innerHTML = `
 <div id='map' style='height:65vh;'></div>
 `
-
-
-//Shortest Path Algorithm
-function optimal1(longitude, latitude) {
-    var truckLocation = [83.00013, 25.32055];
-    var warehouseLocation = [83.00013, 25.32055];
-    var lastQueryTime = 0;
-    var lastAtRestaurant = 0;
-    var keepTrack = [];
-    var currentSchedule = [];
-    var currentRoute = null;
-    var pointHopper = {};
-    var pause = true;
-    var speedFactor = 50;
-
-    mapboxgl.accessToken = 'pk.eyJ1IjoiYWRpdHlhMjAyMyIsImEiOiJja2tteDRzMmIxdmphMnZwZ28zNTBzYmgyIn0.1P-bsCr_lbQcBBFA4i8IMQ';
-    var map = new mapboxgl.Map({
-        container: 'map',
-        style: 'mapbox://styles/aditya2023/ckkqx2u5f2j1n18mrimqk85ri', // stylesheet location
-        center: truckLocation, // starting position
-        zoom: 12
-    });
-
-
-    var warehouse = turf.featureCollection([turf.point(warehouseLocation)]);
-    var dropoffs = turf.featureCollection([]);
-    var nothing = turf.featureCollection([]);
-    map.on('load', function() {
-        var marker = document.createElement('div');
-        marker.classList = 'truck';
-
-        // Create a new marker
-        truckMarker = new mapboxgl.Marker(marker)
-            .setLngLat(truckLocation)
-            .addTo(map);
-        map.addLayer({
-            id: 'warehouse-symbol',
-            type: 'symbol',
-            source: {
-                data: warehouse,
-                type: 'geojson'
-            },
-
-
-        });
-
-        map.addLayer({
-            id: 'dropoffs-symbol',
-            type: 'symbol',
-            source: {
-                data: dropoffs,
-                type: 'geojson'
-            },
-            layout: {
-                'icon-allow-overlap': true,
-                'icon-ignore-placement': true,
-                'icon-image': 'marker-15',
-            }
-        });
-
-        for (let i = 0; i < longitude.length; i++) {
-            newDropoff(new mapboxgl.LngLat(longitude[i], latitude[i]));
-        }
-
-        map.addControl(
-            new MapboxDirections({
-                accessToken: mapboxgl.accessToken
-            }),
-            'top-left'
-        );
-
-        
-
-        map.addSource('route', {
-            type: 'geojson',
-            data: nothing
-        });
-
-        map.addLayer({
-            id: 'routeline-active',
-            type: 'line',
-            source: 'route',
-            layout: {
-                'line-join': 'round',
-                'line-cap': 'round'
-            },
-            paint: {
-                'line-color': 'black',
-                'line-width': [
-                    "interpolate",
-                    ["linear"],
-                    ["zoom"],
-                    12, 3,
-                    22, 40
-                ]
-            }
-        }, 'waterway-label');
-
-        map.addLayer({
-            id: 'routearrows',
-            type: 'symbol',
-            source: 'route',
-            layout: {
-                'symbol-placement': 'line',
-                'text-field': '>>',
-                'text-size': [
-                    "interpolate",
-                    ["linear"],
-                    ["zoom"],
-                    12, 24,
-                    22, 160
-                ],
-                'symbol-spacing': [
-                    "interpolate",
-                    ["linear"],
-                    ["zoom"],
-                    12, 30,
-                    22, 160
-                ],
-                'text-keep-upright': false
-            },
-            paint: {
-                'text-color': 'red',
-                'text-halo-color': 'hsl(55, 11%, 96%)',
-                'text-halo-width': 3
-            }
-        }, 'waterway-label');
-
-    });
-
-
-    function newDropoff(coords) {
-        // Store the clicked point as a new GeoJSON feature with
-        // two properties: `orderTime` and `key`
-        var pt = turf.point(
-            [coords.lng, coords.lat], {
-                orderTime: Date.now(),
-                key: Math.random()
-            }
-        );
-        dropoffs.features.push(pt);
-        pointHopper[pt.properties.key] = pt;
-
-        // Make a request to the Optimization API
-        $.ajax({
-            method: 'GET',
-            url: assembleQueryURL(),
-        }).done(function(data) {
-            // Create a GeoJSON feature collection
-            var routeGeoJSON = turf.featureCollection([turf.feature(data.trips[0].geometry)]);
-
-            // If there is no route provided, reset
-            if (!data.trips[0]) {
-                routeGeoJSON = nothing;
-            } else {
-                // Update the `route` source by getting the route source
-                // and setting the data equal to routeGeoJSON
-                map.getSource('route')
-                    .setData(routeGeoJSON);
-            }
-
-            if (data.waypoints.length === 12) {
-                window.alert('Maximum number of points reached. Read more at docs.mapbox.com/api/navigation/#optimization.');
-            }
-        });
-    }
-
-    function updateDropoffs(geojson) {
-        map.getSource('dropoffs-symbol')
-            .setData(geojson);
-    }
-
-
-    function assembleQueryURL() {
-
-        // Store the location of the truck in a variable called coordinates
-        var coordinates = [truckLocation];
-        var distributions = [];
-
-
-        // Create an array of GeoJSON feature collections for each point
-        var restJobs = objectToArray(pointHopper);
-
-        // If there are any orders from this restaurant
-        if (restJobs.length > 0) {
-
-            // Check to see if the request was made after visiting the restaurant
-            var needToPickUp = restJobs.filter(function(d, i) {
-                return d.properties.orderTime > lastAtRestaurant;
-            }).length > 0;
-
-            // If the request was made after picking up from the restaurant,
-            // Add the restaurant as an additional stop
-            if (needToPickUp) {
-                var restaurantIndex = coordinates.length;
-                // Add the restaurant as a coordinate
-                coordinates.push(warehouseLocation);
-                // push the restaurant itself into the array
-                keepTrack.push(pointHopper.warehouse);
-            }
-
-            restJobs.forEach(function(d, i) {
-                // Add dropoff to list
-                keepTrack.push(d);
-                coordinates.push(d.geometry.coordinates);
-                // if order not yet picked up, add a reroute
-                if (needToPickUp && d.properties.orderTime > lastAtRestaurant) {
-                    distributions.push(restaurantIndex + ',' + (coordinates.length - 1));
-                }
-            });
-        }
-
-        // Set the profile to `driving`
-        // Coordinates will include the current location of the truck,
-        return 'https://api.mapbox.com/optimized-trips/v1/mapbox/driving/' + coordinates.join(';') + '?distributions=' + distributions.join(';') + '&overview=full&steps=true&geometries=geojson&source=first&access_token=' + mapboxgl.accessToken;
-    }
-
-    function objectToArray(obj) {
-        var keys = Object.keys(obj);
-        var routeGeoJSON = keys.map(function(key) {
-            return obj[key];
-        });
-        return routeGeoJSON;
-    }
-
-};
 

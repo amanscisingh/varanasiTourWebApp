@@ -8,10 +8,7 @@
     <link rel="stylesheet" href="css/dashboard.css">
     <link rel="stylesheet" href="css/oneDay.css">
 
-    <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
-    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
-    <script src='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.js'></script>
-    <link href='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css' rel='stylesheet' />
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 </head>
 <body>
     <div class="big-container">
@@ -95,8 +92,9 @@
 
     <script src="javascript/dashboard.js"></script>
     <script src="javascript/oneDay.js"></script>
-    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.js"></script>
-    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.css" type="text/css">
-
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDbagPOfTmIv_byu0S5uX_1EPtWH2E67s&callback=initMap&libraries=&v=weekly"
+      async
+    ></script>
 </body>
 </html>

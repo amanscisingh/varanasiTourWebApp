@@ -8,6 +8,20 @@ const showDescription6 = document.getElementById("btn-6")
 
 var topAttraction;
 
+function initMap() {
+    const directionsService = new google.maps.DirectionsService();
+    const directionsRenderer = new google.maps.DirectionsRenderer();
+    const map = new google.maps.Map(document.getElementById("map"), {
+      zoom: 18,
+      center: { lat: 25.288, lng: 83.0068 },
+    });
+    directionsRenderer.setMap(map);
+    directionsRenderer.setPanel(document.getElementById('directionsPanel'));
+    document.getElementById("submit").addEventListener("click", () => {
+      calculateAndDisplayRoute(directionsService, directionsRenderer);
+    });
+}
+
 fetch("data.json").then((res) => {
     res.json().then((ress)=>{
         console.log(ress);

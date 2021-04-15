@@ -152,9 +152,11 @@ p{
 
 /* for map container */
 #map {
+    height: 100%;
+    float: left;
     width: 100%;
-    height: 70vh;
-}
+    height: 100%;
+  }
 
 #map-container{
     display: flex;
