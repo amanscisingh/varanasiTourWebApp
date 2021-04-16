@@ -4,6 +4,12 @@ body{
     background-image: none;
 }
 
+#directionsPanel{
+    height: 12vh;
+    width: 100vh;
+    overflow-y: scroll;
+}
+
 #map {
     position: absolute;
     top: 0;

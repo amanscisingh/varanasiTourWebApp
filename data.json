@@ -26,7 +26,7 @@
         "cruise" : "First ever air conditioned, luxury river cruise on holy river Ganga in Varanasi. Cruise tour shows all the ghats of Kashi. State of art double story vessel with AC lower deck & roof covered open upper deck. Sofa seating for 60 pax, video documentary on LED TV, continuous light instrumental music, guide. Complimentary bottled water, tea/coffee+cookies. Onboard Bio-Toilet, Safe & Secure."
     },
     "coordinate_1" : [
-        { "location": "{lat: 25.2917, lng: 83.00617}", "stopover": true }, { "location": "{lat: 25.31077, lng: 83.01402}", "stopover": true }, {"location":" {lat: 25.29905, lng: 83.00728}", "stopover": true }, {"location": "{lat: 25.30624, lng: 83.01009} ", "stopover": true }
+        [{"lat": 25.28914, "lng": 83.00619}, {"lat": 25.29644, "lng": 83.00722}]
     ],
     "coordinate_2" : {
         "latitudes" : [25.28917,25.31077,25.31082,25.26598,25.26977],
