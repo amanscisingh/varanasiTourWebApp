@@ -1,4 +1,14 @@
-console.log("Dashboard JS File is running...");
+// Service workers
+// if ("serviceWorker" in navigator) {
+//     navigator.serviceWorker.register("sw.js").then(registration => {
+//         console.log("SW Registered!");
+//         console.log(registration);
+//     }).catch(err => {
+//         console.log("SW Registration Failed!");
+//         console.error(err);
+//     })
+// }
+
 
 const aman = document.getElementById("change")
 const touristBtn = document.getElementById('touristBtn')
@@ -6,6 +16,9 @@ const cityTourBtn = document.getElementById('cityTourBtn')
 const foodBtn = document.getElementById('foodBtn')
 const shoppingBtn = document.getElementById('shoppingBtn')
 const healthBtn = document.getElementById('healthBtn')
+const scroller = document.getElementById('change')
+
+scroller.style.visibility = "hidden";
 
 
 const tourists = ["Top Attraction", "Temples", "Ghat", "Recreation", "Heritage", "Other"]
@@ -21,6 +34,7 @@ const touristsImg = ["Top Attractioin", "Temples", "Ghat", "Recreation", "Herita
 
 
 touristBtn.addEventListener('click', () => {
+    scroller.style.visibility = "visible";
     tempStr = ""
     console.log("Yay Clicked");
     for (let i = 0; i < tourists.length; i++) {
@@ -37,6 +51,7 @@ touristBtn.addEventListener('click', () => {
 })
 
 cityTourBtn.addEventListener('click', () => {
+    scroller.style.visibility = "visible";
     tempStr = ""
     console.log("Yay Clicked");
     for (let i = 0; i < cityTour.length; i++) {
@@ -53,6 +68,7 @@ cityTourBtn.addEventListener('click', () => {
 })
 
 shoppingBtn.addEventListener('click', () => {
+    scroller.style.visibility = "visible";
     tempStr = ""
     console.log("Yay Clicked");
     for (let i = 0; i < shopping.length; i++) {
@@ -69,6 +85,7 @@ shoppingBtn.addEventListener('click', () => {
 })
 
 foodBtn.addEventListener('click', () => {
+    scroller.style.visibility = "visible";
     tempStr = ""
     console.log("Yay Clicked");
     for (let i = 0; i < food.length; i++) {
@@ -85,6 +102,7 @@ foodBtn.addEventListener('click', () => {
 })
 
 healthBtn.addEventListener('click', () => {
+    scroller.style.visibility = "visible";
     tempStr = ""
     console.log("Yay Clicked");
     for (let i = 0; i < health.length; i++) {

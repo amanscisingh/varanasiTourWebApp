@@ -1,0 +1,20 @@
+{
+    "name": "Varanasi Tourism WebApp",
+    "short_name": "VNS Tour",
+    "start_url": "/dashboard.html",
+    "background_color": "#150704",
+    "theme_color": "#95B6E2",
+    "display": "standalone",
+    "icons": [
+        {
+            "src": "images/logo192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "images/logo512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}

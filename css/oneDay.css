@@ -5,9 +5,22 @@ body{
 }
 
 #directionsPanel{
-    height: 12vh;
+    height: 18vh;
     width: 100vh;
     overflow-y: scroll;
+    background-color: white;
+}
+
+#directionsPanel::-webkit-scrollbar {
+    display: none;
+}
+
+#expand-collapse{
+    
+}
+
+.buttons{
+    text-align: center;
 }
 
 #map {
@@ -62,19 +75,6 @@ p{
     font-weight: 600;
 }
 
-.bg-container {
-    background-image: url("https://d1tgh8fmlzexmh.cloudfront.net/ccbp-static-website/ocean.jpg");
-    height: 100vh;
-    background-size: cover;
-}
-
-.tourism-card {
-    text-align: center;
-    background-color: white;
-    border-top-left-radius: 25px;
-    border-top-right-radius: 25px;
-    padding: 5px;
-}
 
 .button {
     color: white;
@@ -201,24 +201,6 @@ p{
     top: 35px;
     left: 20px;
     box-shadow: 3px -1px 11px royalblue;
-}
-
-.marker {
-    background-image: url('https://res-console.cloudinary.com/dajhwrmig/thumbnails/v1/image/upload/v1612794200/Njc4MTExLW1hcC1tYXJrZXItNTEyXzFfZG5ndWRj/preview');
-    background-size: cover;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    cursor: pointer;
-}
-
-.mapboxgl-popup {
-    max-width: 200px;
-}
-
-.mapboxgl-popup-content {
-    text-align: center;
-    font-family: 'Open Sans', sans-serif;
 }
 
 
