@@ -1,12 +1,12 @@
-const showDescription1 = document.getElementById("btn-1")
-const showDescription2 = document.getElementById("btn-2")
-const showDescription3 = document.getElementById("btn-3")
-const showDescription4 = document.getElementById("btn-4")
-const showDescription5 = document.getElementById("btn-5")
 const navDetail = document.getElementById("navDetail")
 const edit = document.getElementById("edit")
 const topAttraction = document.getElementsByClassName("top-attraction")[0]
-console.log(topAttraction);
+const directionsPanel = document.getElementById("directionsPanel")
+const expandCollapse = document.getElementById("expand-collapse")
+const delList = document.getElementsByClassName("del")
+console.log(delList[0]);
+directionsPanel.style.visibility = "visible";
+
 
 var coordinatesArray = [{lat: 25.28917, lng: 83.00617}, {lat: 25.31077, lng: 83.01402}, {lat: 25.31082, lng: 83.01055}, {lat: 25.26598, lng: 82.98792},{lat: 25.26977, lng: 83.02445}]
 var mapForRouting;
@@ -22,7 +22,7 @@ const nameToCoordinate = {
 function initMap(coordinatesArray) {
     if (coordinatesArray.length < 2) {
         navDetail.innerText = "You have chosen less than 2 places to visit. Please make a selection worth more than two places!!!";
-        setTimeout(()=> { location.reload() } ,3000)
+        // setTimeout(()=> { location.reload() } ,3000)
     } else {
         const directionsService = new google.maps.DirectionsService();
         const directionsRenderer = new google.maps.DirectionsRenderer();
@@ -57,15 +57,7 @@ function initMap(coordinatesArray) {
                 // const summaryPanel = document.getElementById("directions-panel");
                 // summaryPanel.innerHTML = "";
     
-                // For each route, display summary information.
-                for (let i = 0; i < route.legs.length; i++) {
-                const routeSegment = i + 1;
-                navDetail.innerHTML +=
-                    "<b>Route Segment: " + routeSegment + "</b><br>";
-                navDetail.innerHTML += route.legs[i].start_address + " to ";
-                navDetail.innerHTML += route.legs[i].end_address + "<br>";
-                navDetail.innerHTML += route.legs[i].distance.text + "<br><br>";
-                }
+                
             } else {
                 window.alert("Directions request failed due to " + status);
             }
@@ -97,15 +89,7 @@ function initMap(coordinatesArray) {
                 // const summaryPanel = document.getElementById("directions-panel");
                 // summaryPanel.innerHTML = "";
     
-                // For each route, display summary information.
-                for (let i = 0; i < route.legs.length; i++) {
-                const routeSegment = i + 1;
-                navDetail.innerHTML +=
-                    "<b>Route Segment: " + routeSegment + "</b><br>";
-                navDetail.innerHTML += route.legs[i].start_address + " to ";
-                navDetail.innerHTML += route.legs[i].end_address + "<br>";
-                navDetail.innerHTML += route.legs[i].distance.text + "<br><br>";
-                }
+                
             } else {
                 window.alert("Directions request failed due to " + status);
             }
@@ -115,83 +99,29 @@ function initMap(coordinatesArray) {
 }
 
 
-
-
-
-fetch("data.json").then((res)=> { res.json().then((ress)=> {
-    const totalCoordinates = ress['coordinate_1']
-    console.log(totalCoordinates);
-    var fullDescription = ress['ghats'];
-    showDescription1.addEventListener('click', ()=> {
-        console.log("Description Clicked");
-        aman.innerHTML =` <p style="padding:7px">` + fullDescription['assi'] + `</p>` + `<button id='close'> X </button>`;
-        const close = document.getElementById('close');
-        close.addEventListener('click', () => {
-            aman.innerHTML = "";
-        });
-        setTimeout(()=> { aman.innerHTML = ""; }, 10000)
-    })
-    
-    
-    showDescription2.addEventListener('click', ()=> {
-        console.log("Description Clicked");
-        aman.innerHTML =` <p style="padding:7px">` + fullDescription['manikarnika'] + `</p>` + `<button id='close'> X </button>`;
-        const close = document.getElementById('close');
-        close.addEventListener('click', () => {
-            aman.innerHTML = "";
-        });
-        setTimeout(()=> { aman.innerHTML = ""; }, 10000)
-    })
-    
-    
-    showDescription3.addEventListener('click', ()=> {
-        console.log("Description Clicked");
-        aman.innerHTML =` <p style="padding:7px">` + fullDescription['kedar'] + `</p>` + `<button id='close'> X </button>`;
-        const close = document.getElementById('close');
-        close.addEventListener('click', () => {
-            aman.innerHTML = "";
-        });
-        setTimeout(()=> { aman.innerHTML = ""; }, 10000)
-    })
-    
-    
-    showDescription4.addEventListener('click', ()=> {
-        console.log("Description Clicked");
-        aman.innerHTML =` <p style="padding:7px">` + fullDescription['dasaswamedh'] + `</p>` + `<button id='close'> X </button>`;
-        const close = document.getElementById('close');
-        close.addEventListener('click', () => {
-            aman.innerHTML = "";
-        });
-        setTimeout(()=> { aman.innerHTML = ""; }, 10000)
-    })
-
 //recalculating the algorithm on clicking the edit & recALCULATE BUTTON
-
-    edit.addEventListener('click', ()=> {
-        document.body.append(mapContainer);
-        const checkboxes = document.querySelectorAll('input[name="oneDay"]:checked');
-        var coordinates = [];
-        selected = [];
-        str = "We will be moving to: ";
-        console.log("Edit Clicked");
-        checkboxes.forEach((checkbox) => {
-            selected.push(checkbox.value);
-            str = str + ' -> ' + checkbox.value;
-        });
-        for (let i = 0; i < selected.length; i++) {
-            const element = nameToCoordinate[selected[i]];
-            coordinates.push(coordinatesArray[element])
-        }
-
-        console.log(coordinates);
-        navDetail.innerHTML = str;
-        setTimeout(()=> { navDetail.innerHTML = "Now moving from Your Location to" + selected[0] },3000);
-        topAttraction.remove();
-
-        initMap(coordinates)
+edit.addEventListener('click', ()=> {
+    document.body.append(mapContainer);
+    const checkboxes = document.querySelectorAll('input[name="twoDay"]:checked');
+    console.log(checkboxes);
+    var coordinates = [];
+    selected = [];
+    console.log("Edit Clicked");
+    checkboxes.forEach((checkbox) => {
+        selected.push(checkbox.value);
     });
+    for (let i = 0; i < selected.length; i++) {
+        const element = nameToCoordinate[selected[i]];
+        coordinates.push(coordinatesArray[element])
+    }
 
-}) })
+    console.log(coordinates);        
+    topAttraction.remove();
+
+    initMap(coordinates);
+    edit.disabled = true;
+});
+
 
 var mapContainer = document.createElement("div")
 mapContainer.classList.add("top-attraction")
@@ -200,3 +130,23 @@ mapContainer.innerHTML = `
 <div id='map' style='height:65vh;'></div>
 `
 
+var m = 0
+function expand_Collapse(mode) {
+    if (mode === 0) {
+        directionsPanel.style.height = "35vh";
+        mapContainer.style.height = "45vh";
+        mode = 1;
+        expandCollapse.innerHTML = '👇';
+        return mode;
+    } else {
+        directionsPanel.style.height = "18vh";
+        mapContainer.style.height = "65vh";
+        mode = 0;
+        expandCollapse.innerHTML = '👆';
+        return mode;
+    }
+}
+
+expandCollapse.addEventListener('click', ()=> {
+    m = expand_Collapse(m)
+})

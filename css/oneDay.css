@@ -4,6 +4,15 @@ body{
     background-image: none;
 }
 
+input[type="checkbox"]{
+    width: 20px;
+    height: 20px;
+}
+
+hr{
+    margin: 0;
+}
+
 #directionsPanel{
     height: 18vh;
     width: 100vh;
@@ -16,11 +25,26 @@ body{
 }
 
 #expand-collapse{
-    
+    float: right;
+    font-size: larger;
+    margin: -2px 8px 0px 0px;
+}
+
+#edit{
+    background-color: #000000;
+    color: white;
+    font-size: x-large;
+    margin-left: 8px;
+}
+
+#edit:disabled{
+    background-color: #000000b8;
+    border: none;
 }
 
 .buttons{
     text-align: center;
+    background-color: #fff;
 }
 
 #map {

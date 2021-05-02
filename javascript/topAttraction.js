@@ -24,8 +24,8 @@ function initMap() {
 
 fetch("data.json").then((res) => {
     res.json().then((ress)=>{
-        console.log(ress);
         topAttraction = ress["topAttraction"];
+        aman.style.visibility = 'visible';
         showDescription1.addEventListener('click', ()=> {
             console.log("Description Clicked");
             aman.innerHTML =` <p style="padding:7px">` + topAttraction['ganges'] + `</p>` + `<button id='close'> X </button>`;
@@ -33,7 +33,7 @@ fetch("data.json").then((res) => {
             close.addEventListener('click', () => {
                 aman.innerHTML = "";
             });
-            setTimeout(()=> { aman.innerHTML = ""; }, 10000)
+            // setTimeout(()=> { aman.innerHTML = ""; }, 10000)
         })
         
         

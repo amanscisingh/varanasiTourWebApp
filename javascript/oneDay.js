@@ -1,12 +1,9 @@
-const showDescription1 = document.getElementById("btn-1")
-const showDescription2 = document.getElementById("btn-2")
-const showDescription3 = document.getElementById("btn-3")
-const showDescription4 = document.getElementById("btn-4")
 const navDetail = document.getElementById("navDetail")
 const edit = document.getElementById("edit")
 const topAttraction = document.getElementsByClassName("top-attraction")[0]
 const directionsPanel = document.getElementById("directionsPanel")
 const expandCollapse = document.getElementById("expand-collapse")
+expandCollapse.style.visibility = 'hidden';
 const delList = document.getElementsByClassName("del")
 console.log(delList[0]);
 directionsPanel.style.visibility = "visible";
@@ -38,7 +35,7 @@ function initMap(coordinatesArray) {
     
   }
 
-  function calculateAndDisplayRoute(directionsService, directionsRenderer, coordinatesArray) {
+function calculateAndDisplayRoute(directionsService, directionsRenderer, coordinatesArray) {
     const start = coordinatesArray[0]
     const final = coordinatesArray[coordinatesArray.length - 1]
     if (coordinatesArray.length === 2) {
@@ -99,76 +96,30 @@ function initMap(coordinatesArray) {
     }
 }
 
-fetch("data.json").then((res)=> { res.json().then((ress)=> {
-    const totalCoordinates = ress['coordinate_1']
-    // console.log(totalCoordinates);
-    var fullDescription = ress['ghats'];
-    showDescription1.addEventListener('click', ()=> {
-        console.log("Description Clicked");
-        aman.innerHTML =` <p style="padding:7px">` + fullDescription['assi'] + `</p>` + `<button id='close'> X </button>`;
-        const close = document.getElementById('close');
-        close.addEventListener('click', () => {
-            aman.innerHTML = "";
-        });
-        setTimeout(()=> { aman.innerHTML = ""; }, 10000)
-    })
-    
-    
-    showDescription2.addEventListener('click', ()=> {
-        console.log("Description Clicked");
-        aman.innerHTML =` <p style="padding:7px">` + fullDescription['manikarnika'] + `</p>` + `<button id='close'> X </button>`;
-        const close = document.getElementById('close');
-        close.addEventListener('click', () => {
-            aman.innerHTML = "";
-        });
-        setTimeout(()=> { aman.innerHTML = ""; }, 10000)
-    })
-    
-    
-    showDescription3.addEventListener('click', ()=> {
-        console.log("Description Clicked");
-        aman.innerHTML =` <p style="padding:7px">` + fullDescription['kedar'] + `</p>` + `<button id='close'> X </button>`;
-        const close = document.getElementById('close');
-        close.addEventListener('click', () => {
-            aman.innerHTML = "";
-        });
-        setTimeout(()=> { aman.innerHTML = ""; }, 10000)
-    })
-    
-    
-    showDescription4.addEventListener('click', ()=> {
-        console.log("Description Clicked");
-        aman.innerHTML =` <p style="padding:7px">` + fullDescription['dasaswamedh'] + `</p>` + `<button id='close'> X </button>`;
-        const close = document.getElementById('close');
-        close.addEventListener('click', () => {
-            aman.innerHTML = "";
-        });
-        setTimeout(()=> { aman.innerHTML = ""; }, 10000)
-    })
-
 //recalculating the algorithm on clicking the edit & recALCULATE BUTTON
-
-    edit.addEventListener('click', ()=> {
-        document.body.append(mapContainer);
-        const checkboxes = document.querySelectorAll('input[name="oneDay"]:checked');
-        var coordinates = [];
-        selected = [];
-        console.log("Edit Clicked");
-        checkboxes.forEach((checkbox) => {
-            selected.push(checkbox.value);
-        });
-        for (let i = 0; i < selected.length; i++) {
-            const element = nameToCoordinate[selected[i]];
-            coordinates.push(coordinatesArray[element])
-        }
-
-        console.log(coordinates);        
-        topAttraction.remove();
-
-        initMap(coordinates)
+edit.addEventListener('click', ()=> {
+    document.body.append(mapContainer);
+    const checkboxes = document.querySelectorAll('input[name="oneDay"]:checked');
+    var coordinates = [];
+    selected = [];
+    console.log("Edit Clicked");
+    checkboxes.forEach((checkbox) => {
+        selected.push(checkbox.value);
     });
+    for (let i = 0; i < selected.length; i++) {
+        const element = nameToCoordinate[selected[i]];
+        coordinates.push(coordinatesArray[element])
+    }
 
-}) })
+    console.log(coordinates);        
+    topAttraction.remove();
+
+    initMap(coordinates);
+    edit.disabled = true;
+    expandCollapse.style.visibility = 'visible';
+});
+
+
 
 var mapContainer = document.createElement("div")
 mapContainer.classList.add("top-attraction")
@@ -198,28 +149,3 @@ expandCollapse.addEventListener('click', ()=> {
     m = expand_Collapse(m)
 })
 
-touristBtn.addEventListener('click', ()=> {
-    delList[0].remove();
-    delList[1].remove();
-    delList[2].remove();
-})
-cityTourBtn.addEventListener('click', ()=> {
-    delList[0].remove();
-    delList[1].remove();
-    delList[2].remove();
-})
-foodBtn.addEventListener('click', ()=> {
-    delList[0].remove();
-    delList[1].remove();
-    delList[2].remove();
-})
-shoppingBtn.addEventListener('click', ()=> {
-    delList[0].remove();
-    delList[1].remove();
-    delList[2].remove();
-})
-healthBtn.addEventListener('click', ()=> {
-    delList[0].remove();
-    delList[1].remove();
-    delList[2].remove();
-})

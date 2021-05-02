@@ -33,10 +33,11 @@ h2{
     justify-self: center;
     justify-items: center;
     margin: 0;
+    font-size: 27px;
 }
 
 p{
-    color: whitesmoke;
+    color: rgb(0, 0, 0);
     font-weight: bold;
 }
 

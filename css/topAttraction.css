@@ -143,11 +143,12 @@ p{
 
 #close{
     position: absolute;
-    height: 18px;
-    width: 18px;
+    height: 19px;
+    width: 19px;
     top: 0;
     right: 0;
     padding: 1px;
+    font-weight: 700;
 }
 
 /* for map container */
